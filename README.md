@@ -1,19 +1,10 @@
 # Sisi Otaku
 
-Website info & jadwal anime — jadwal tayang harian, genre, sinopsis, dan pencarian anime, semua diambil **langsung dan otomatis dari MyAnimeList** (lewat Jikan API, gratis & tanpa API key). Admin tinggal mengatur link streaming per judul; tidak perlu upload data anime manual lagi.
+Website info & jadwal anime — cari anime, lihat jadwal per hari, upload anime lewat panel admin, dan bookmark anime favorit.
 
 - Kode login admin: `83e14vghreiwa`
 - Login pengguna: bebas pakai username/Gmail apa saja (tanpa server, jadi tanpa password sungguhan)
-- Jadwal, poster, genre, sinopsis: **live dari MyAnimeList**, selalu terbaru, tidak perlu di-update manual
-- Link streaming (Otakudesu/Nontonanime/Anoboy): diatur admin per anime, tersimpan di **localStorage browser** (lihat catatan di bawah)
-- Bookmark pengguna: juga tersimpan di localStorage per perangkat
-
-## Cara admin mengatur link streaming
-
-1. Login admin dengan kode di atas.
-2. Buka anime apa saja (dari jadwal atau hasil pencarian).
-3. Di bagian "Nonton di", tekan ikon rantai di sebelah kanan tombol platform, tempel link asli, lalu Simpan.
-4. Kalau link belum diisi, tombol otomatis mengarah ke halaman pencarian judul di situs terkait — jadi tetap berfungsi sebelum diisi manual.
+- Data anime & bookmark tersimpan di **localStorage browser** (per perangkat/browser masing-masing — belum ada database bersama, lihat catatan di bawah)
 
 ---
 
@@ -89,20 +80,14 @@ Kalau nama repo kamu berbeda (misalnya `anime-web`), ubah jadi `"/anime-web/"`.
 
 ## Catatan penting soal data
 
-**Jadwal, poster, genre, sinopsis** — selalu live dari MyAnimeList, sama untuk semua pengunjung, tidak perlu dikelola.
+Saat ini anime yang diupload admin dan bookmark pengguna tersimpan di **localStorage** browser masing-masing orang yang membuka web. Artinya:
 
-**Link streaming yang diisi admin** dan **bookmark pengguna** — masih tersimpan di **localStorage** browser masing-masing orang. Artinya:
+- Anime yang kamu tambahkan lewat HP kamu **tidak otomatis muncul** di HP orang lain.
+- Kalau orang lain buka cache/browser berbeda, datanya kosong.
 
-- Link streaming yang kamu isi dari satu perangkat **tidak otomatis muncul** di perangkat lain.
-- Kalau orang lain buka dari browser/HP berbeda, link streaming yang mereka lihat masih yang default (pencarian otomatis) sampai kamu isi juga dari perangkat itu, atau sampai disambungkan ke database bersama.
+Ini paling cocok untuk demo, uji coba pribadi, atau kalau kamu satu-satunya yang mengelola dan menonton dari perangkat yang sama.
 
-Ini paling cocok untuk demo atau kalau kamu satu-satunya admin yang mengelola dari perangkat yang sama. Kalau nanti kamu mau link streaming yang diisi admin otomatis muncul untuk **semua** pengunjung dari perangkat mana pun, langkah selanjutnya adalah menyambungkan ke backend seperti **Supabase** atau **Firebase** (gratis untuk skala kecil) — cukup bilang saja, saya bisa bantu sambungkan.
-
-## Sumber data & batasan
-
-- Data anime diambil dari **Jikan API** (`https://api.jikan.moe/v4`), API tidak resmi yang membaca dari MyAnimeList — gratis, tanpa perlu daftar atau API key.
-- Jikan punya batas jumlah permintaan (sekitar 60x per menit), jadi web ini sengaja memberi jeda kecil antar permintaan dan menyimpan cache sementara per hari supaya tidak kena limit saat dipakai wajar.
-- Livechart.me tidak dipakai karena tidak menyediakan API publik gratis untuk diakses langsung dari browser.
+Kalau nanti kamu mau semua pengunjung melihat anime yang sama (database beneran), langkah selanjutnya adalah menghubungkan ke backend seperti **Supabase** atau **Firebase** (gratis untuk skala kecil) — cukup bilang saja, saya bisa bantu sambungkan.
 
 ---
 
